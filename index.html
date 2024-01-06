@@ -2,9 +2,9 @@
 <html lang="ru_RU">
     <head>
         <title>"Путеводитель по городу"</title>
-        <script src="https://api-maps.yandex.ru/v3/?apikey=9f0657f1-6cac-403f-ab2a-f96fc3f146bc&lang=ru_RU"></script>
+        <script src="https://api-maps.yandex.ru/v3/?apikey=YOUR_API_KEY&lang=ru_RU"></script>
         <script src="index.js"></script>
-        <!--<link href="style.css" rel="stylesheet">-->
+        <link href="style.css" rel="stylesheet">
     </head>
     <body>
         <p class="text">Приложение поможет пользователям и туристам легко и удобно исследовать город.</p>
@@ -22,6 +22,8 @@
             <li>Взаимодействие с удаленным сервером для получения актуальной информации о местах и событиях.</li>
             <li>Использование LocalStorage для сохранения предпочтений пользователя и истории посещений.</li>
         </ul>
+        <div id="your_location">1</div>
         <div id="app" style="width: 600px; height: 400px"></div>
+        <script src="geolocation.js"></script>
     </body>
 </html>
