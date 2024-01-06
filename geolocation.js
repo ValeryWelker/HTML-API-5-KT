@@ -30,3 +30,6 @@ function showPosition(position) {
 };
 var x = document.getElementById("your_location");
 getLocation();
+
+var point = new YMaps.GeoPoint(position.coords.latitude, position.coords.longitude); // Координаты в Яндекс API
+map.setCenter(point);
