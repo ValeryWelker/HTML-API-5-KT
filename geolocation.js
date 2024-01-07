@@ -33,56 +33,60 @@ function showPosition(position) {
 };
 // Дождёмся загрузки API и готовности DOM.
 getLocation();
-var myMap;
-navigator.geolocation.getCurrentPosition(function(position) {
-    // Создаем карту и указываем текущие координаты в качестве центра
-    var map = new ymaps.Map("map", {
-        center: [position.coords.latitude, position.coords.longitude],
-        zoom: 15,
-        controls: ['searchControl', 'routePanelControl', 'default']
-    }, {
-        searchControlProvider: 'yandex#search'
-    });
 
-    // Создаем метку с текущим местоположением пользователя
-    var placemark = new ymaps.Placemark([position.coords.latitude, position.coords.longitude], {
-        hintContent: 'Ваше местоположение',
-        balloonContent: 'Вы находитесь здесь'
-    });
+function init (ymaps) {
 
-    // Добавляем метку на карту
-    map.geoObjects.add(placemark);
-    
-
-        // Создаем экземпляр класса ymaps.control.SearchControl
-        mySearchControl = new ymaps.control.SearchControl({
-          options: {
-              noPlacemark: false
-          }
-      }),
-  // Результаты поиска будем помещать в коллекцию.
-      mySearchResults = new ymaps.GeoObjectCollection(null, {
-          hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
+  var myMap;
+  navigator.geolocation.getCurrentPosition(function(position) {
+      // Создаем карту и указываем текущие координаты в качестве центра
+      var map = new ymaps.Map("map", {
+          center: [position.coords.latitude, position.coords.longitude],
+          zoom: 15,
+          controls: ['searchControl', 'routePanelControl', 'default']
+      }, {
+          searchControlProvider: 'yandex#search'
       });
-  myMap.controls.add(mySearchControl);
-  myMap.geoObjects.add(mySearchResults);
-  // При клике по найденному объекту метка становится красной.
-  mySearchResults.events.add('click', function (e) {
-      e.get('target').options.set('preset', 'islands#redIcon');
-  });
-  // Выбранный результат помещаем в коллекцию.
-  mySearchControl.events.add('resultselect', function (e) {
-      var index = e.get('index');
-      mySearchControl.getResult(index).then(function (res) {
-         mySearchResults.add(res);
-      });
-  }).add('submit', function () {
-          mySearchResults.removeAll();
-      })
-    
-    document.getElementById('destroyButton').onclick = function () {
-      // Для уничтожения используется метод destroy.
-      myMap.destroy()
-      };
-;})
 
+      // Создаем метку с текущим местоположением пользователя
+      var placemark = new ymaps.Placemark([position.coords.latitude, position.coords.longitude], {
+          hintContent: 'Ваше местоположение',
+          balloonContent: 'Вы находитесь здесь'
+      });
+
+      // Добавляем метку на карту
+      map.geoObjects.add(placemark);
+      
+
+          // Создаем экземпляр класса ymaps.control.SearchControl
+          mySearchControl = new ymaps.control.SearchControl({
+            options: {
+                noPlacemark: false
+            }
+        }),
+    // Результаты поиска будем помещать в коллекцию.
+        mySearchResults = new ymaps.GeoObjectCollection(null, {
+            hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
+        });
+    myMap.controls.add(mySearchControl);
+    myMap.geoObjects.add(mySearchResults);
+    // При клике по найденному объекту метка становится красной.
+    mySearchResults.events.add('click', function (e) {
+        e.get('target').options.set('preset', 'islands#redIcon');
+    });
+    // Выбранный результат помещаем в коллекцию.
+    mySearchControl.events.add('resultselect', function (e) {
+        var index = e.get('index');
+        mySearchControl.getResult(index).then(function (res) {
+          mySearchResults.add(res);
+        });
+    }).add('submit', function () {
+            mySearchResults.removeAll();
+        })
+      
+      document.getElementById('destroyButton').onclick = function () {
+        // Для уничтожения используется метод destroy.
+        myMap.destroy()
+        };
+  ;})
+
+}
