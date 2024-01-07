@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru_RU">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <title>"Путеводитель по городу"</title>
-        <script src="https://api-maps.yandex.ru/v3/?apikey=713249cd-3f5d-490b-957b-02b6ea2869e4&lang=ru_RU"></script>
-        <script src="index.js"></script>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script src="https://api-maps.yandex.ru/2.1/?apikey=819ad9db-f94d-423f-8a39-283506896511&lang=ru_RU" type="text/javascript"></script>
         <link href="style.css" rel="stylesheet">
     </head>
     <body>
@@ -22,8 +22,14 @@
             <li>Взаимодействие с удаленным сервером для получения актуальной информации о местах и событиях.</li>
             <li>Использование LocalStorage для сохранения предпочтений пользователя и истории посещений.</li>
         </ul>
-        <div id="your_location">1</div>
-        <div id="app" style="width: 600px; height: 400px"></div>
+        
+        <div id="mapbox">
+            <div id="your_location">1</div>
+            <div id="map"></div>
+            <input type="button" id="destroyButton" value="Удалить карту"/>
+        </div>
+            
         <script src="geolocation.js"></script>
+        
     </body>
 </html>

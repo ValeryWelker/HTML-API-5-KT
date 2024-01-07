@@ -1,5 +1,4 @@
 var x = document.getElementById("your_location");
-
 function showError(error) {
     switch(error.code) {
       case error.PERMISSION_DENIED:
@@ -26,10 +25,37 @@ function getLocation() {
 };
 
 function showPosition(position) {
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
+    console.log(latitude, longitude);
     x.innerHTML = "Ваши координаты:" + "<br>Широта:" + position.coords.latitude + "<br>Долгота:" + position.coords.longitude;
+    
 };
-var x = document.getElementById("your_location");
+// Дождёмся загрузки API и готовности DOM.
 getLocation();
+var myMap;
+navigator.geolocation.getCurrentPosition(function(position) {
+    // Создаем карту и указываем текущие координаты в качестве центра
+    var map = new ymaps.Map("map", {
+        center: [position.coords.latitude, position.coords.longitude],
+        zoom: 15,
+        controls: ['searchControl', 'routePanelControl', 'default']
+    }, {
+        searchControlProvider: 'yandex#search'
+    });
 
-var point = new YMaps.GeoPoint(position.coords.latitude, position.coords.longitude); // Координаты в Яндекс API
-map.setCenter(point);
+    // Создаем метку с текущим местоположением пользователя
+    var placemark = new ymaps.Placemark([position.coords.latitude, position.coords.longitude], {
+        hintContent: 'Ваше местоположение',
+        balloonContent: 'Вы находитесь здесь'
+    });
+
+    // Добавляем метку на карту
+    map.geoObjects.add(placemark);
+    
+    document.getElementById('destroyButton').onclick = function () {
+      // Для уничтожения используется метод destroy.
+      myMap.destroy()
+      };
+;})
+
