@@ -49,7 +49,7 @@ function init (ymaps) {
 
       var routePanelControl = new ymaps.control.RoutePanel();
 
-      Map.controls.add(routePanelControl);
+      map.controls.add(routePanelControl);
 
 
       // Создаем метку с текущим местоположением пользователя
