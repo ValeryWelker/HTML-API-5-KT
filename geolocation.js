@@ -42,10 +42,17 @@ function init (ymaps) {
       var map = new ymaps.Map("map", {
           center: [position.coords.latitude, position.coords.longitude],
           zoom: 15,
-          controls: ['searchControl', 'routePanelControl', 'default']
+          controls: ['searchControl', 'default']
       }, {
           searchControlProvider: 'yandex#search'
       });
+
+
+
+      var routePanelControl = new ymaps.control.RoutePanel({options: {size: small}});
+
+      myMap.controls.add(routePanelControl);
+
 
       // Создаем метку с текущим местоположением пользователя
       var placemark = new ymaps.Placemark([position.coords.latitude, position.coords.longitude], {
@@ -58,11 +65,11 @@ function init (ymaps) {
       
 
           // Создаем экземпляр класса ymaps.control.SearchControl
-          mySearchControl = new ymaps.control.SearchControl({
-            options: {
-                noPlacemark: false
-            }
-        }),
+      mySearchControl = new ymaps.control.SearchControl({
+        options: {
+            noPlacemark: false
+          }
+      }),
     // Результаты поиска будем помещать в коллекцию.
         mySearchResults = new ymaps.GeoObjectCollection(null, {
             hintContentLayout: ymaps.templateLayoutFactory.createClass('$[properties.name]')
