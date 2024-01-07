@@ -47,7 +47,7 @@ function init (ymaps) {
           searchControlProvider: 'yandex#search'
       });
 
-      var routePanelControl = new ymaps.control.RoutePanel({options: {size: small, float: right}});
+      var routePanelControl = new ymaps.control.RoutePanel({options: {float: right}});
 
       myMap.controls.add(routePanelControl);
 
