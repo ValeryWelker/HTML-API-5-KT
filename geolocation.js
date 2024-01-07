@@ -57,7 +57,7 @@ navigator.geolocation.getCurrentPosition(function(position) {
         // Создаем экземпляр класса ymaps.control.SearchControl
         mySearchControl = new ymaps.control.SearchControl({
           options: {
-              noPlacemark: true
+              noPlacemark: false
           }
       }),
   // Результаты поиска будем помещать в коллекцию.
