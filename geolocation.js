@@ -47,9 +47,9 @@ function init (ymaps) {
           searchControlProvider: 'yandex#search'
       });
 
-      var routePanelControl = new ymaps.control.RoutePanel();
+      var routePanelControl = new ymaps.control.RoutePanel({options: {float: right}});
 
-      myMap.controls.add(routePanelControl);
+      Map.controls.add(routePanelControl);
 
 
       // Создаем метку с текущим местоположением пользователя
