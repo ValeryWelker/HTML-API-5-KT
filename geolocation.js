@@ -42,12 +42,12 @@ function init (ymaps) {
       var map = new ymaps.Map("map", {
           center: [position.coords.latitude, position.coords.longitude],
           zoom: 15,
-          controls: ['searchControl', 'default']
+          controls: ['searchControl', 'smallMapDefaultSet']
       }, {
           searchControlProvider: 'yandex#search'
       });
 
-      var routePanelControl = new ymaps.control.RoutePanel();
+      var routePanelControl = new ymaps.control.RoutePanel({options: {float:'right'}});
 
       map.controls.add(routePanelControl);
 
