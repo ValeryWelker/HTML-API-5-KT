@@ -88,10 +88,10 @@ function init (ymaps) {
             mySearchResults.removeAll();
         })
       
-      document.getElementById('destroyButton').onclick = function () {
+      /*document.getElementById('destroyButton').onclick = function () {
         // Для уничтожения используется метод destroy.
         myMap.destroy()
-        };
+      };*/
   ;})
 
 }
